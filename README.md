@@ -11,8 +11,8 @@
 *   **加密**：密碼使用 `BCryptPasswordEncoder` 進行雜湊與加鹽處理。
 
 ### 前端 (Frontend - Vue)
-*   **響應式介面**：採用 Vue 3 Composition API 開發，提供流暢的使用者體驗。
-*   **路由管理**：使用 `vue-router` 進行頁面導航，並實作路由守衛 (Route Guards) 保護頁面。
+*   **響應式介面**：採用 Vue 3 Composition API 開發。
+*   **路由管理**：使用 `vue-router` 進行頁面導航。
 
 
 ## 🔌 環境建置與執行

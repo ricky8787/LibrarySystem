@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.library.common.ProcedureResult;
 import com.library.model.Book;
 import com.library.model.Inventory;
 import com.library.model.BorrowingRecord;
@@ -50,7 +51,7 @@ public class BookService {
     public String borrowBook(String phone, Long inventoryId) {
         User user = userRepository.findByPhoneNumber(phone).orElseThrow();
         int result = spRepository.borrowBook(user.getUserId(), inventoryId);
-        if (result == -1) {
+        if (result == ProcedureResult.FAIL.getCode()) {
             throw new RuntimeException("Inventory is not available");
         }
         return "Book borrowed successfully";
@@ -59,7 +60,7 @@ public class BookService {
     @Transactional
     public String returnBook(Long recordId) {
         int result = spRepository.returnBook(recordId);
-        if (result == -1) {
+        if (result == ProcedureResult.FAIL.getCode()) {
             throw new RuntimeException("Return failed: record not found or already returned");
         }
         return "Book returned successfully";

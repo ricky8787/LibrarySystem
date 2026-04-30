@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.library.common.ProcedureResult;
 import com.library.dto.AuthRequest;
 import com.library.dto.AuthResponse;
 import com.library.model.User;
@@ -36,7 +37,7 @@ public class AuthService {
     public String register(AuthRequest request) {
         String encodedPassword = passwordEncoder.encode(request.getPassword());
         int result = spRepository.registerUser(request.getPhone(), encodedPassword, request.getName());
-        if (result == -1) {
+        if (result == ProcedureResult.FAIL.getCode()) {
             throw new RuntimeException("Phone number already exists");
         }
         return "User registered successfully";
